@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(to right, #d32f2f, #ff5722);
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-section {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .login-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            display: none; /* Hide by default */
+        }
+        .login-card h3 {
+            color: #673ab7;
+        }
+        .login-card input[type="text"],
+        .login-card input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-card button {
+            background: #ff9800;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .signup-link {
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: gray;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #673ab7;
+            text-decoration: none;
+        }
+    </style>
+
+    <script>
+        function changeLoginForm() {
+            var userType = document.getElementById("user-type").value;
+            var farmerLogin = document.getElementById("farmer-login");
+            var retailerLogin = document.getElementById("retailer-login");
+
+            // Hide both login forms initially
+            farmerLogin.style.display = "none";
+            retailerLogin.style.display = "none";
+
+            // Show the selected login form
+            if (userType === "farmer") {
+                farmerLogin.style.display = "block";
+            } else if (userType === "retailer") {
+                retailerLogin.style.display = "block";
+            }
+        }
+
+        function submitForm() {
+            var userType = document.getElementById("user-type").value;
+
+            if (userType === "farmer") {
+                document.getElementById("farmer-login-form").submit();
+                
+            } else if (userType === "retailer") {
+                // Redirect retailer to home page after login
+                document.getElementById("retailer-login-form").submit();
+                window.location.href = "home.html"; // Redirect to home page after login
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="header">
+        <h1>FARMCONNECT</h1>
+        <p>Connecting Farmers with Technology</p>
+        <p>Empowering Agriculture for a Sustainable Future</p>
+    </div>
+
+    <div class="container">
+        <!-- User Type Selector -->
+        <label for="user-type"><strong>Select User Type:</strong></label>
+        <select id="user-type" onchange="changeLoginForm()">
+            <option value="none">Select</option>
+            <option value="farmer">Farmer</option>
+            <option value="retailer">Retailer</option>
+        </select>
+    </div>
+
+    <div class="login-section">
+        <!-- Farmer Login Form -->
+        <div id="farmer-login" class="login-card">
+            <h3>Farmer Login</h3>
+            <form id="farmer-login-form" action="farmer.html" method="POST">
+                <input type="text" name="username" placeholder="User Name" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <!-- Retailer Login Form -->
+        <div id="retailer-login" class="login-card">
+            <h3>Retailer Login</h3>
+            <form id="retailer-login-form" action="home.html" method="POST">
+                <input type="text" name="username" placeholder="User Name" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="signup-link">
+        <p style="text-align:center;">Don't have an account? <a href="signup.html">Sign up here</a></p>
+    </div>
+
+    <div class="footer">
+        <p>Copyright © FarmConnect</p>
+        <p>Powered by Webpros Solutions Pvt Ltd</p>
+    </div>
+    
+    
+    
+
+</body>
+</html>
